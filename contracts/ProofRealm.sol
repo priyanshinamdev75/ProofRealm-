@@ -1,13 +1,33 @@
-? Function 1: Submit a proof (document hash)
-    function submitProof(string memory _documentHash) public {
-        proofCount++;
-        proofs[proofCount] = Proof(proofCount, _documentHash, msg.sender, block.timestamp, false);
-        emit ProofSubmitted(proofCount, msg.sender, _documentHash);
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+/**
+ * @title ProofRealm
+ * @notice A decentralized verification system that allows users to submit proofs 
+ *         and verifiers to validate them for authenticity and integrity.
+ */
+contract Project {
+    address public admin;
+    uint256 public proofCount;
+
+    struct Proof {
+        uint256 id;
+        address submitter;
+        string dataHash;
+        string description;
+        uint256 timestamp;
+        bool verified;
     }
 
-    ? Function 3: Get proof details
-    function getProof(uint256 _id) public view returns (Proof memory) {
-        require(_id > 0 && _id <= proofCount, "Invalid proof ID");
-// 
-update
-// 
+    mapping(uint256 => Proof) public proofs;
+
+    event ProofSubmitted(uint256 indexed id, address indexed submitter, string dataHash, string description);
+    event ProofVerified(uint256 indexed id, address indexed verifier);
+
+    modifier onlyAdmin() {
+        require(msg.sender == admin, "Only admin can perform this action");
+        _;
+    }
+
+    constructor() {
+        a
