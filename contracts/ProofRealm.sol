@@ -1,29 +1,4 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.26;
-
-/**
- * @title ProofRealm
- * @notice A decentralized ecosystem for storing, verifying, and managing cryptographic proofs.
- *         ProofRealm allows users to submit digital proofs that can later be validated by
- *         authorized verifiers or through community consensus.
- *
- * @dev Designed for dApps requiring immutable proof tracking such as academic credentials,
- *      legal evidence, NFT authenticity, and supply chain verifications.
- */
-contract ProofRealm {
-    address public admin;
-    uint256 public proofCount;
-
-    enum ProofStatus {
-        Pending,
-        Verified,
-        Rejected
-    }
-
-    struct Proof {
-        uint256 id;
-        address submitter;
-        string dataHash;    // Hash or content reference (e.g., IPFS CID)
+Hash or content reference (e.g., IPFS CID)
         string metadataURI; // Optional metadata (description, file reference)
         uint256 timestamp;
         ProofStatus status;
@@ -122,3 +97,6 @@ contract ProofRealm {
         admin = _newAdmin;
     }
 }
+// 
+End
+// 
